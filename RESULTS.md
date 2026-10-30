@@ -10,6 +10,10 @@
   After changing p(95) threshold to 300 ms, the p(95) rule failed.
   Exit code: 99
 - Step 0.8, what was wrong, and how the checks showed it:
+  The excluded ingredient and tool names used the wrong capitalization.
+  The script sent "pepperoni" and "knife", but the API uses "Pepperoni" and "Knife".
+  Because the values are case-sensitive, the exclusions were not applied correctly.
+  Under load, repeated requests produced enough different pizza recommendations for the checks to detect cases containing Pepperoni or requiring a Knife. A single manual request might randomly return a valid pizza and hide the problem.
 ## Part A results
 | Step | Test type | Users | Req/s | p(95) | Max | Failed | Checks |
 | ---- | ------------ | ----- | ----- | ----- | --- | ------ | ------ |
