@@ -5,6 +5,10 @@
   The request rate stays below 5 req/s because each virtual user sleeps for 1 second after every request, and the HTTP request itself also takes about 0.3 seconds. Therefore, one iteration takes about 1.34 seconds on average, so 5 VUs cannot generate 5 requests every second.
 - Step 0.6, exit code of the normal run and of the run with P95=300:  Normal run exit code: 0, P95=300 run exit code: 99
 - Step 0.7, rules that passed, p(95), p(99), exit code after your change:
+  Initial run: all rules passed.
+  p(95)=411.49 ms, p(99)=417.36 ms, http_req_failed=0.00%.
+  After changing p(95) threshold to 300 ms, the p(95) rule failed.
+  Exit code: 99
 - Step 0.8, what was wrong, and how the checks showed it:
 ## Part A results
 | Step | Test type | Users | Req/s | p(95) | Max | Failed | Checks |
